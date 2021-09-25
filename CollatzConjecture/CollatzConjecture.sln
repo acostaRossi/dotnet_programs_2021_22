@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollatzConjecture", "CollatzConjecture\CollatzConjecture.csproj", "{A701EB1A-0671-4674-870D-079A667578FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A701EB1A-0671-4674-870D-079A667578FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A701EB1A-0671-4674-870D-079A667578FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A701EB1A-0671-4674-870D-079A667578FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A701EB1A-0671-4674-870D-079A667578FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04464EEA-C399-4BCE-9CEC-0EE584598AE5}
+	EndGlobalSection
+EndGlobal
