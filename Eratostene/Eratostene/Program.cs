@@ -64,7 +64,7 @@ namespace Eratostene
                 {   
                     for (int y = i+1; y < arrWithNumbers.Length; y++)
                     {
-                        if (arrWithNumbers[i] > 0 && arrWithNumbers[y] % arrWithNumbers[i] == 0 && arrWithNumbers[y] / arrWithNumbers[i] > 1)
+                        if (arrWithNumbers[i] > 0 && arrWithNumbers[y] % arrWithNumbers[i] == 0)
                         {
                             arrWithNumbers[y] = 0;
                         }
