@@ -18,7 +18,6 @@ namespace SimpleECommerce
 
         private void buttonPInsert_Click(object sender, EventArgs e)
         {
-
             Product p = new Product()
             {
                 Name = textBoxPName.Text,
