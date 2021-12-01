@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -11,107 +10,84 @@ using System.Windows.Forms;
 namespace SimpleECommerce4CII
 {
 
-    class User {
-        public string Name { get; set; }
-        public User(string name)
-        {
-            Name = name;
-        }
-    }
-    class Category {
-        public string Name { get; set; }
-        public Category(string name)
-        {
-            Name = name;
-        }
-    }
-    class Product {
-        private bool _enabled = false; // FIELD
-        public string Name { get; set; }
-        public double Price { get; set; }
-        public bool Enabled { // PROPERTY 
-            get => _enabled;
-            set {
-                if (Price > 0)
-                {
-                    _enabled = value;
-                }
-                throw new ArgumentException("Price must be grater than 0");
-            }
-        }
-        //public void setEnabled(bool value)
-        //{
-        //    if (Price > 0)
-        //    {
-        //        _enabled = value;
-        //    }
-        //    throw new ArgumentException("Price must be grater than 0");
-
-        //}
-        //public bool getEnabled()
-        //{
-        //    return _enabled;
-        //}
-        public Product(string name)
-        {
-            Name = name;
-        }
-        public Product(string name, double price)
-        {
-            Name = name;
-            Price = price;
-        }
-    }
-    class Seller {
-        public string Name { get; set; }
-        public string IBAN { get; set; }
-        public List<User> admins { get; set; }
-        public Seller(string name, string iBAN, List<User> admins)
-        {
-            Name = name;
-            IBAN = iBAN;
-            if (admins.Count > 5) {
-                throw new ArgumentException("List must be less than 5");
-            }
-            this.admins = admins;
-        }
-        public Seller(string name, string iBAN, User admin)
-        {
-            Name = name;
-            IBAN = iBAN;
-
-            admins = new List<User>(5);
-
-            admins.Add(admin);
-        }
-    }
-
-
     public partial class Form1 : Form
     {
+        List<Category> categories;
+        List<Product> products;
         public Form1()
         {
             InitializeComponent();
 
-            User u = new User("Alberto");
-
-            Seller s = new Seller("Costa tech", "asasasasa", u);
-            
-            Product p = new Product("IPhone") {
-                Price = 100,
-                Name = "s10"
+            categories = new List<Category>() { 
+                new Category("Phones"),
+                new Category("Books"),
+                new Category("Films"),
             };
 
-            Category c = new Category("Phones");
+            products = new List<Product>();
+
+            BindData();
+
+            User u1 = new User("Alberto");
+
+            Seller s = new Seller("Costa tech", "asasasasa", u1);
+
+            s.AddAdmin(new User("Mattia"));
+            s.AddAdmin(new User("Ugo"));
+            s.AddAdmin(new User("Gino"));
+            s.AddAdmin(new User("Giuseppe"));
+            s.AddAdmin(new User("Mario"));
 
 
 
+            //Product p = new Product("IPhone") {
+            //    Price = 100,
+            //    Name = "s10"
+            //};
 
-            
+            //Category c = new Category("Phones");
 
+        }
 
+        private void buttonCatCreate_Click(object sender, System.EventArgs e)
+        {
+            categories.Add(new Category(textBoxCatName.Text));
 
+            BindData();
+        }
 
+        private void buttonPCreate_Click(object sender, System.EventArgs e)
+        {
+            Product p;
+            if (comboBoxPCategory.SelectedItem == null)
+            {
+                p = new Product(textBoxPName.Text, double.Parse(textBoxPPrice.Text));
+            } else {
+                Category catselected = comboBoxPCategory.SelectedItem as Category;
+                p = new Product(textBoxPName.Text, double.Parse(textBoxPPrice.Text), catselected);
+            }
+
+            if (p != null)
+            {
+                products.Add(p);
+            }
+
+            BindData();
+        }
+
+        private void BindData() {
+            comboBoxPCategory.DataSource = null;
+            comboBoxPCategory.DataSource = categories;
+            comboBoxPCategory.DisplayMember = "Name";
+
+            listBoxProducts.DataSource = null;
+            listBoxProducts.DataSource = products;
+            listBoxProducts.DisplayMember = "Display";
+        }
+
+        private void buttonPrint_Click(object sender, System.EventArgs e)
+        {   
+            MessageBox.Show(products[products.Count - 1].Name);
         }
     }
 }
