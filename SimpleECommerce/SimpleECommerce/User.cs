@@ -1,0 +1,6 @@
+﻿namespace SimpleECommerce
+{
+    class User
+    {
+    }
+}
